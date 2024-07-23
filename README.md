@@ -16,6 +16,8 @@
 
 # database name : 
     supply_chain_management
+
+    # URL : http://localhost/phpmyadmin/index.php?route=/database/structure&db=supply_chain_management
  # use phpMyAdmin for storing the data:
     host =localhost
     user=root
