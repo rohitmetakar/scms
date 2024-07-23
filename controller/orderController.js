@@ -6,9 +6,9 @@ let orderController = {
     getorderList: async function (req, res) {
         try {
             let getOrder = await orderDb.getOrder();
-            res.status(200).json({ message: "get all orders", getOrder });
+            return res.status(200).json({ message: "get all orders", getOrder });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
         }
     },
 
@@ -16,9 +16,9 @@ let orderController = {
         try {
             let { customer_id, order_date, status } = req.body
             let data = await orderDb._insertOrder(customer_id, order_date, status);
-            res.status(200).json({ message: "Insert order" });
+            return res.status(200).json({ message: "Insert order" });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
         }
     },
 
@@ -26,9 +26,9 @@ let orderController = {
         try {
             let { id } = req.params || req.query;  // check parameter or query string
             let orderById = await orderDb._getOrderById(id)
-            res.status(200).json({ message: "get  order by id", orderById });
+            return res.status(200).json({ message: "get  order by id", orderById });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
         }
     },
 
@@ -37,9 +37,9 @@ let orderController = {
             let { id } = req.params || req.query;
             let { order_date, status } = req.body
             let upddateRec = await orderDb.updateOrder(id, order_date, status)
-            res.status(200).json({ message: "update order by id" });
+            return res.status(200).json({ message: "update order by id" });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
 
         }
     },
@@ -48,9 +48,9 @@ let orderController = {
         try {
             let { id } = req.params || req.query;
             let deleteRec = await orderDb._deleteOrder(id)
-            res.status(200).json({ message: "delete order by id" });
+            return res.status(200).json({ message: "delete order by id" });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
         }
     },
 
@@ -63,9 +63,9 @@ let orderController = {
                 return res.status(400).json({ message: 'status required' });
             }
             const updateStatus = await orderDb.updateStatus(id, status);  //  update the status 'Pending', 'Fulfilled', 'Cancelled'
-            res.status(200).json({ message: 'Order status updated', updateStatus });
+            return res.status(200).json({ message: 'Order status updated', updateStatus });
         } catch (error) {
-            res.status(500).json({ message: 'Internal server error', error });
+            return res.status(500).json({ message: 'Internal server error', error });
         }
     },
 
@@ -73,9 +73,9 @@ let orderController = {
         try {
             let { id } = req.params || req.query;  // check parameter or query string
             let orderitems = await orderDb._getOrderItems(id)
-            res.status(200).json({ message: "get  order Items", orderitems });
+            return res.status(200).json({ message: "get  order Items", orderitems });
         } catch (error) {
-            res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ message: "Internal server error", error });
         }
     },
 

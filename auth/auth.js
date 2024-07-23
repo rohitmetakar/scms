@@ -20,9 +20,9 @@ const register = async (req, res) => {
     // Create the user in the users database
     const result = await userDb.createUser(email, hashedPassword);
     
-    res.status(201).json({ message: "user created ",result }); 
+    return res.status(201).json({ message: "user created ",result }); 
   } catch (error) {
-    res.status(500).json({ error: error.message }); // Respond with error message if an error occurs
+    return res.status(500).json({ error: error.message }); // Respond with error message if an error occurs
   }
 };
 
@@ -45,9 +45,9 @@ const login = async (req, res) => {
 
     // Generate a JWT token for the authenticated user
     const token = generateToken(user);
-    res.json({ token });
+    return res.json({ token });
   } catch (error) {
-    res.status(500).json({ error: error.message }); // if an error occurs
+    return res.status(500).json({ error: error.message }); // if an error occurs
   }
 };
 
