@@ -15,14 +15,10 @@ let customerDb = {
     },
 
     _insertCustomer: function (name, contact_info) {
-
-        console.log(name, contact_info);
         return new Promise((resolve, reject) => {
             let query = `INSERT INTO customer(name, contact_info)VALUES(?,?)`;
-            console.log(query);
             dbConn.query(query, [name, contact_info], (err, results) => {
                 if (err) {
-                    console.log(err)
                     reject(err)
                 } else {
                     resolve(results)
@@ -34,7 +30,6 @@ let customerDb = {
     _getCustomerById: function (id) {
         return new Promise((resolve, reject) => {
             let query = `SELECT * FROM customer WHERE id = ?`;
-            console.log('query :>>>>>>', query);
             dbConn.query(query, [id], (error, result) => {
                 if (error) {
                     reject(error);
@@ -47,13 +42,9 @@ let customerDb = {
 
     updateCutomer: function (id, name, contact_info) {
         return new Promise((resolve, reject) => {
-            console.log(id);
-            console.log(name);
-            console.log(contact_info);
             let query = `UPDATE customer SET name = '${name}', contact_info = '${contact_info}' WHERE id = '${id}'`;
             dbConn.query(query, [], (error, result) => {
                 if (error) {
-                    console.log(error)
                     reject(error)
                 } else {
                     resolve(result)
@@ -62,14 +53,13 @@ let customerDb = {
         })
     },
 
-    _deleteCustomer : function(id){
-        return new Promise((resolve, reject)=>{
+    _deleteCustomer: function (id) {
+        return new Promise((resolve, reject) => {
             let query = `DELETE FROM customer WHERE id = ?`;
-            dbConn.query(query, [id], (error, result)=>{
-                if(error){
-                    console.log(error);
+            dbConn.query(query, [id], (error, result) => {
+                if (error) {
                     reject(error)
-                }else{
+                } else {
                     resolve(result)
                 }
             })

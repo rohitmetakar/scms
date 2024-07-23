@@ -1,23 +1,18 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
 require('dotenv').config();
-
-const dbConn  = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.NAME
-})
-// console.log("dbConn:>>>>", process.env.HOST);
-
+// Create a MySQL connection using env variables
+const dbConn = mysql.createConnection({
+    host: process.env.HOST, //  host
+    user: process.env.USER, //  user
+    password: process.env.PASSWORD, //  password
+    database: process.env.NAME //name
+});
+// Connect to database
 dbConn.connect((err) => {
     if (err) {
-        console.error('database connection error:', err.stack);
-        return err;
+        console.error('Database connection error:', err.stack); //  if connection fails
+        return err; // return error
     }
-    console.log('database connection success');
+    console.log('Database connection successful'); //  if connection is successful
 });
-
-
-module.exports = dbConn
-
-
+module.exports = dbConn; 
