@@ -3,11 +3,11 @@
 # A RESTful API for managing a supply chain system, including products, suppliers, customers, orders, and shipments.
 
 # code structure
-create controller.js file for buisness logic
-create DB.js file to write all database queris
-create route.js file to add all route
-craete auth.js file and write user login and residtration API function and generate jwt token
-create config.js file write database connection code
+- create controller.js file for buisness logic.
+- create DB.js file to write all database queris.
+- create route.js file to add all route.
+- craete auth.js file and write user login and residtration API function and generate jwt token.
+- create config.js file write database connection code.
 
 # authentication.
     create middleware function for verify the jsonWebtoken
