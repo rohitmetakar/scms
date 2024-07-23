@@ -1,3 +1,7 @@
+# Supply Chain Management API
+
+# A RESTful API for managing a supply chain system, including products, suppliers, customers, orders, and shipments.
+
 # project run command : node app.js
 VS code
  mysql
