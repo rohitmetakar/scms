@@ -1,7 +1,7 @@
 const dbConn = require('../config/config');
 
 let customerDb = {
-    getCustomers: async function () {
+    getCustomers:  function () {
         return new Promise((resolve, reject) => {
             let query = 'SELECT * FROM customer';
             dbConn.query(query, (error, results) => {

@@ -14,7 +14,7 @@ const userDb = {
         });
     },
 
-    findByEmail: function (email) {
+    findEmail: function (email) {
         return new Promise((resolve, reject) => {
             const query = 'SELECT * FROM users WHERE email = ?';
             myDb.query(query, [email], (error, results) => {

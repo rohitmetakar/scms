@@ -14,11 +14,11 @@ const register = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Hash the password using bcrypt
-    const hashedPassword = await bcrypt.hash(password, 6);
+    // hash the password using bcrypt 
+    const hashPassword = await bcrypt.hash(password, 6);    
 
-    // Create the user in the users database
-    const result = await userDb.createUser(email, hashedPassword);
+    // create the user in the users database
+    const result = await userDb.createUser(email, hashPassword);
     
     return res.status(201).json({ message: "user created ",result }); 
   } catch (error) {
@@ -32,7 +32,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     // check email is exist or not
-    const user = await userDb.findByEmail(email);
+    const user = await userDb.findEmail(email);
     if (!user) {
       return res.status(401).json({ error: 'invalid email or password' }); // if user not found
     }

@@ -8,17 +8,27 @@ let orderController = {
             let getOrder = await orderDb.getOrder();
             return res.status(200).json({ message: "get all orders", getOrder });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
     insertOrder: async function (req, res) {
         try {
             let { customer_id, order_date, status } = req.body
+
+            if (!customer_id) {
+                return res.status(401).json({ error: 'name required' }); // if user not found
+            }
+            if (!order_date) {
+                return res.status(401).json({ error: 'contact_info is required' }); // if user not found
+            }
+            if (!status) {
+                return res.status(401).json({ error: 'contact_info is required' }); // if user not found
+            }
             let data = await orderDb._insertOrder(customer_id, order_date, status);
             return res.status(200).json({ message: "Insert order" });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
@@ -28,7 +38,7 @@ let orderController = {
             let orderById = await orderDb._getOrderById(id)
             return res.status(200).json({ message: "get  order by id", orderById });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
@@ -39,7 +49,7 @@ let orderController = {
             let upddateRec = await orderDb.updateOrder(id, order_date, status)
             return res.status(200).json({ message: "update order by id" });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
 
         }
     },
@@ -50,7 +60,7 @@ let orderController = {
             let deleteRec = await orderDb._deleteOrder(id)
             return res.status(200).json({ message: "delete order by id" });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
@@ -65,7 +75,7 @@ let orderController = {
             const updateStatus = await orderDb.updateStatus(id, status);  //  update the status 'Pending', 'Fulfilled', 'Cancelled'
             return res.status(200).json({ message: 'Order status updated', updateStatus });
         } catch (error) {
-            return res.status(500).json({ message: 'Internal server error', error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
@@ -75,7 +85,7 @@ let orderController = {
             let orderitems = await orderDb._getOrderItems(id)
             return res.status(200).json({ message: "get  order Items", orderitems });
         } catch (error) {
-            return res.status(500).json({ message: "Internal server error", error });
+            return res.status(500).json({ error: error.message });
         }
     },
 
